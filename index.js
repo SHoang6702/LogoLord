@@ -74,13 +74,13 @@ async function init() {
     userShapeType = answers.shape
 
     let userShape = ""
-    if (userShapetype === "Circle"){
+    if (userShapeType === "Circle"){
         userShape = new Circle();
         console.log("Selection: Circle")
-    } else if (userShapetype === "Square"){
+    } else if (userShapeType === "Square"){
         userShape = new Square();
         console.log("Selection: Square")
-    } else if (userShapetype === "Triangle"){
+    } else if (userShapeType === "Triangle"){
         userShape = new Triangle();
         console.log("Selection: Triangle")
     }
