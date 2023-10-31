@@ -16,7 +16,7 @@ class SVG {
     };
     //For some reason `${color}` kept breaking, so used "${color}" instead. Not familiar enough with this format yet.
     setTextElement(text,color) {
-        this.textElement = <text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${text}</text>
+        this.textElement = `<text x = "150" y = "125" font-size = "60" text-anchor="middle" fill="${color}">${text}</text>`
     };
     setShapeElement(shape) {
         this.shapeElement = shape.render();
@@ -24,66 +24,130 @@ class SVG {
 }
 
 //Questions about the logo design
-inquirer
-  .prompt([
+const questions = [
     {
-        type: "input",
-        name: "text",
-        message: "Enter up to 3 Characters",
+    type: "input",
+    name: "text",
+    message: "Enter up to 3 Characters",
     },
     {
-        type: "input",
-        name: "text-color",
-        message: "Enter a text color (keyword or hexadecimal)"
+    type: "input",
+    name: "text-color",
+    message: "Enter a text color (keyword or hexadecimal)"
     },
     {
-        type: "list",
-        name: "shape",
-        message: "Choose a shape",
-        choices: ["Circle", "Square", "Triangle", ]
+    type: "list",
+    name: "shape",
+    message: "Choose a shape",
+    choices: ["Circle", "Square", "Triangle", ]
     },
     {
-        type: "input",
-        name: "shape-color",
-        message: "Enter a shape color (keyword or hexadecimal)"
+    type: "input",
+    name: "shape-color",
+    message: "Enter a shape color (keyword or hexadecimal)"
     }
-  ]);
-
-//Prints the data into the logo.svg file
+]
+//Writes to file
 function writeToFile(fileName, data) {
-    const fileName = `./logo.svg`;
-
-    fs.writeFile(filename, (data), (err) =>
-      err ? console.log(err) : console.log('SVG generated successfully')
-    );
+    fs.writeFile(fileName, data, function (err) {
+        if (err) { 
+            return console.log(err);
+        }
+        console.log("logo.svg: Generated successfully")
+    })
 }
-
-//initializes the program
-function init(){
+async function init() {
     let svgString = "";
     let svgFile = "logo.svg";
+    //Starts the inquirer
+    const answers = await inquirer.prompt(questions);
 
-    const answers = inquirer.prompt(questions)
-
-    let userText = "";
-    if (answers.text.length > 0 && answers.text.length < 4) {
-        userText = answers.text;
-    } else {
-        console.log("Error: Enter 1-3 characters")
-    return;
-    }
-
-    let userShape = "";
-    if (userShape_type === "Circle"){
-        userShape = new Circle();
-        console.log("Selection: Circle")
-    } else if (userShape_type === "Square"){
-        userShape = new Square();
-        console.log("Selection: Square")
-    } else if (userShape_type === "Triangle"){
-        userShape = new Triangle();
-        console.log("Selection: Triangle")
-    }
-    
+    let userText = ""
 }
-init();
+init()
+
+
+//!!!Below is a failed experimental version, keeping to work on in future, but will not be used for now!!!
+// const questions = [inquirer
+//   .prompt([
+//     {
+//         type: "input",
+//         name: "text",
+//         message: "Enter up to 3 Characters",
+//     },
+//     {
+//         type: "input",
+//         name: "text-color",
+//         message: "Enter a text color (keyword or hexadecimal)"
+//     },
+//     {
+//         type: "list",
+//         name: "shape",
+//         message: "Choose a shape",
+//         choices: ["Circle", "Square", "Triangle", ]
+//     },
+//     {
+//         type: "input",
+//         name: "shape-color",
+//         message: "Enter a shape color (keyword or hexadecimal)"
+//     }
+//   ])
+//   .then((data) => {
+//     const filename = `./logo.svg`
+//     const answers = inquirer.prompt(questions);
+//     let userText = "";
+
+    // if (answers.text.length > 0 && answers.text.length < 4) {
+    //     userText = answers.text;
+    // } else {
+    //     console.log("Error: Enter 1-3 characters")
+    // return;
+    // }
+
+//     let userShape = "";
+//     userShapeColor = answers.shape-color
+//     userShapeType = answers[shape]
+//     if (userShapetype === "Circle"){
+//         userShape = new Circle();
+//         console.log("Selection: Circle")
+//     } else if (userShapetype === "Square"){
+//         userShape = new Square();
+//         console.log("Selection: Square")
+//     } else if (userShapetype === "Triangle"){
+//         userShape = new Triangle();
+//         console.log("Selection: Triangle")
+//     }
+//     userShape.setColor(userShapeColor)
+//     fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+//     err ? console.log(err) : console.log('logo.svg: generated successfully')
+//   );
+//   })];
+//initializes the program
+// async function init(){
+//     let svgString = "";
+//     let svgFile = "logo.svg";
+
+//     const answers = await inquirer.prompt(questions)
+
+//     let userText = "";
+//     if (answers.text.length > 0 && answers.text.length < 4) {
+//         userText = answers.text;
+//     } else {
+//         console.log("Error: Enter 1-3 characters")
+//     return;
+//     }
+
+//     let userShape = "";
+//     if (userShape_type === "Circle"){
+//         userShape = new Circle();
+//         console.log("Selection: Circle")
+//     } else if (userShape_type === "Square"){
+//         userShape = new Square();
+//         console.log("Selection: Square")
+//     } else if (userShape_type === "Triangle"){
+//         userShape = new Triangle();
+//         console.log("Selection: Triangle")
+//     }
+    
+// }
+// init();
