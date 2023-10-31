@@ -87,7 +87,7 @@ async function init() {
     userShape.setColor(userShapeColor)
 
     let svg = new SVG();
-    svg.setTextElement(userText, UserFontColor)
+    svg.setTextElement(userText, userFontColor)
     svg.setShapeElement(userShape)
     svgString = svg.render();
 
