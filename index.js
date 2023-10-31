@@ -32,7 +32,7 @@ const questions = [
     },
     {
     type: "input",
-    name: "text-color",
+    name: "textColor",
     message: "Enter a text color (keyword or hexadecimal)"
     },
     {
@@ -43,7 +43,7 @@ const questions = [
     },
     {
     type: "input",
-    name: "shape-color",
+    name: "shapeColor",
     message: "Enter a shape color (keyword or hexadecimal)"
     }
 ]
@@ -63,6 +63,35 @@ async function init() {
     const answers = await inquirer.prompt(questions);
 
     let userText = ""
+    if (answers.text.length > 0 && answers.text.length < 4) {
+            userText = answers.text;
+        } else {
+            console.log("Error: Enter 1-3 characters")
+        return;
+        }
+    userFontColor = answers.textColor
+    userShapeColor = answers.shapeColor
+    userShapeType = answers.shape
+
+    let userShape = ""
+    if (userShapetype === "Circle"){
+        userShape = new Circle();
+        console.log("Selection: Circle")
+    } else if (userShapetype === "Square"){
+        userShape = new Square();
+        console.log("Selection: Square")
+    } else if (userShapetype === "Triangle"){
+        userShape = new Triangle();
+        console.log("Selection: Triangle")
+    }
+    userShape.setColor(userShapeColor)
+
+    let svg = new Svg();
+    svg.setTextElement(userText, UserFontColor)
+    svg.setShapeElement(userShape)
+    svgString = svg.render();
+
+    writeToFile(svgFile, svgString)
 }
 init()
 
