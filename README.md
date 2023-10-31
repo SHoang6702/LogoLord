@@ -20,7 +20,7 @@ Github Repository:
 https://github.com/SHoang6702/LogoLord
 
 Youtube:
-
+https://youtu.be/sXmu6-Dn2yk
 
 ## Credits
 Collaborators:
