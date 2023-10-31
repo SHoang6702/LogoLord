@@ -3,9 +3,9 @@
 The program allows you to generated SVG images using a command line prompt
 
 SVG Example
-![SVG](./assets/images/logo.svg.png)
+![SVG](./images/logo.svg.png)
 Command Line Prompt
-![Questions](./assets/images/questions.png)
+![Questions](./images/questions.png)
 
 ## Installation
 
